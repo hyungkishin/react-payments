@@ -1,7 +1,6 @@
 import Card from "components/card";
 import Header from "components/header/header";
 import CardForm from "components/input/CardForm";
-import AddCardModal from "components/modal/AddCardModal";
 import { PaymentsProvider } from "store/Provider";
 import { usePayments } from "store/context";
 
@@ -18,12 +17,10 @@ const CardPreview = () => {
 };
 
 const Content = () => {
-  const { isModalOpen } = usePayments();
   return (
     <PaymentsProvider>
       <CardPreview />
       <CardForm />
-      {isModalOpen && <AddCardModal />}
     </PaymentsProvider>
   );
 };
