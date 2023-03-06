@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useInputFocus, useRefs } from "hooks";
+import { useCardInputAutoFocus, useRefs } from "hooks";
 import { ExpirationDate } from "store/type";
 
 const MAX_DATE_LENGTH = 2;
@@ -16,7 +16,7 @@ const CardExpirationDateInput = ({
 }: CardExpirationDateInputProps) => {
   const dateRefs = useRefs<HTMLInputElement>(MAX_DATE_LENGTH);
 
-  useInputFocus({
+  useCardInputAutoFocus({
     refs: dateRefs,
     deps: [cardExpiration.month, cardExpiration.year],
     maxLength: MAX_DATE_LENGTH,
@@ -54,6 +54,7 @@ const CardExpirationDateInput = ({
       <span className="input-title">만료일</span>
       <div className="input-box w-50">
         <input
+          id="cardExpirationDate1"
           ref={dateRefs[0]}
           className="input-basic"
           type="text"
@@ -66,6 +67,7 @@ const CardExpirationDateInput = ({
         />
         {"/"}
         <input
+          id="cardExpirationDate2"
           ref={dateRefs[1]}
           className="input-basic"
           type="text"

@@ -1,4 +1,4 @@
-import { useInputFocus, useRefs } from "hooks";
+import { useCardInputAutoFocus, useRefs } from "hooks";
 import { ChangeEvent } from "react";
 import { CardPassword } from "store/type";
 
@@ -12,7 +12,7 @@ type CardPasswordInputProps = {
 const CardPasswordInput = ({ password, handlePassword }: CardPasswordInputProps) => {
   const passwordRefs = useRefs<HTMLInputElement>(2);
 
-  useInputFocus({
+  useCardInputAutoFocus({
     refs: passwordRefs,
     deps: password,
     maxLength: MAX_PASSWORD_LENGTH,

@@ -1,4 +1,4 @@
-import { useInputFocus, useRefs } from "hooks";
+import { useCardInputAutoFocus, useRefs } from "hooks";
 import { ChangeEvent } from "react";
 import { CardNumber } from "store/type";
 
@@ -15,7 +15,7 @@ const CardNumbersInput = ({
 }: CardNumbersInputProps) => {
   const numberRefs = useRefs<HTMLInputElement>(MAX_CARD_NUMBER_LENGTH);
 
-  useInputFocus({
+  useCardInputAutoFocus({
     refs: numberRefs,
     deps: cardNumbers,
     maxLength: MAX_CARD_NUMBER_LENGTH,
@@ -40,6 +40,7 @@ const CardNumbersInput = ({
       <span className="input-title">카드 번호</span>
       <div className="input-box">
         <input
+          id="cardNumber1"
           ref={numberRefs[0]}
           className="input-basic"
           type="text"
@@ -49,6 +50,7 @@ const CardNumbersInput = ({
           required
         />
         <input
+          id="cardNumber2"
           ref={numberRefs[1]}
           className="input-basic"
           type="text"
@@ -58,6 +60,7 @@ const CardNumbersInput = ({
           required
         />
         <input
+          id="cardNumber3"
           ref={numberRefs[2]}
           className="input-basic"
           type="password"
@@ -67,6 +70,7 @@ const CardNumbersInput = ({
           required
         />
         <input
+          id="cardNumber4"
           ref={numberRefs[3]}
           className="input-basic"
           type="password"

@@ -6,7 +6,11 @@ interface UseInputFocusProps {
   maxLength: number;
 }
 
-const useInputFocus = ({ refs, deps, maxLength }: UseInputFocusProps) => {
+const useCardInputAutoFocus = ({
+  refs,
+  deps,
+  maxLength,
+}: UseInputFocusProps) => {
   useEffect(() => {
     const focusedInput = refs.find(findActiveElement);
     const focusedInputIndex = refs.findIndex(findActiveElement);
@@ -16,6 +20,7 @@ const useInputFocus = ({ refs, deps, maxLength }: UseInputFocusProps) => {
     }
 
     const value = focusedInput.current?.value;
+    const id = focusedInput.current?.id;
 
     if (maxLength === 0) {
       return;
@@ -24,6 +29,16 @@ const useInputFocus = ({ refs, deps, maxLength }: UseInputFocusProps) => {
     if (value?.length === maxLength) {
       const nextInput = refs[focusedInputIndex + 1];
 
+      if (id?.includes("cardNumber")) {
+        const autufocusPrevious = refs.map((v) => v.current?.value).join("");
+
+        if (autufocusPrevious.length === 16) {
+          const nextRef = document.getElementById("cardExpirationDate1");
+          if (nextRef) {
+            nextRef.focus();
+          }
+        }
+      }
       nextInput && nextInput.current?.focus();
     }
 
@@ -40,4 +55,4 @@ const useInputFocus = ({ refs, deps, maxLength }: UseInputFocusProps) => {
 const findActiveElement = (ref: React.RefObject<HTMLInputElement>) =>
   document.activeElement === ref.current;
 
-export default useInputFocus;
+export default useCardInputAutoFocus;
