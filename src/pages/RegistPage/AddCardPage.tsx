@@ -21,6 +21,7 @@ const Content = () => {
     handlePassword,
     handleCardSubmit,
     handleCardCompany,
+    handleModalClose
   } = useCardForm();
   return (
     <>
@@ -31,7 +32,7 @@ const Content = () => {
         cardCompany={cardCompany}
         size={"small"}
       />
-      {isModalOpen && <AddCardModal handleCardCompany={handleCardCompany} />}
+      {isModalOpen && <AddCardModal handleCardCompany={handleCardCompany} handleModalClose={handleModalClose} />}
       <CardForm
         cardNumbers={cardNumbers}
         cardExpiration={cardExpiration}

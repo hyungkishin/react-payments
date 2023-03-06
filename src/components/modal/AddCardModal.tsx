@@ -3,15 +3,20 @@ import { CardCompany } from "store/type";
 
 type CardCompanyProps = {
   handleCardCompany: (payload: CardCompany) => void;
+  handleModalClose: () => void;
 };
 
-const AddCardModal = ({ handleCardCompany }: CardCompanyProps) => {
+const AddCardModal = ({ handleCardCompany, handleModalClose }: CardCompanyProps) => {
   const handleClickCardCompany = (name: string, color: string) => {
     handleCardCompany({ name, color });
   };
 
+  const close = () => {
+    handleModalClose()
+  }
+
   return (
-    <div className="modal-dimmed">
+    <div className="modal-dimmed" onClick={() => close()}>
       <div className="modal">
         <div className="grid-template">
           {CARD.COMPANY.map(({ name, color }: any) => (

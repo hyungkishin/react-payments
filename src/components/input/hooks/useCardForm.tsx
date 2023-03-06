@@ -71,6 +71,10 @@ export const useCardForm = () => {
     setCardNickName(nickName);
   }, []);
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     const cardComp = cardNumbers.join("").length === 8;
     if (cardComp) {
@@ -101,5 +105,6 @@ export const useCardForm = () => {
     handleCardCompany,
     handleCardSubmit,
     handleCardNickName,
+    handleModalClose
   };
 };
