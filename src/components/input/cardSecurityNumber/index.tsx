@@ -1,4 +1,6 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import { HelpIcon, SecureBox, ToolTip } from "./style";
+import { Input, InputContainer, InputTitle } from "components/common/ui";
 
 const MAX_CVC_LENGTH = 3;
 
@@ -8,6 +10,8 @@ type CardCVCInputProps = {
 };
 
 const CardCVCInput = ({ cvc, handleCvc }: CardCVCInputProps) => {
+  const [helpState, setHelpState] = useState(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
     if (Number.isNaN(+value)) {
@@ -18,17 +22,31 @@ const CardCVCInput = ({ cvc, handleCvc }: CardCVCInputProps) => {
   };
 
   return (
-    <div className="input-container">
-      <span className="input-title">보안코드(CVC/CVV)</span>
-      <input
-        className="input-basic w-25"
-        type="password"
-        value={cvc}
-        onChange={handleChange}
-        maxLength={MAX_CVC_LENGTH}
-        required
-      />
-    </div>
+    <InputContainer>
+      <InputTitle>보안코드(CVC/CVV)</InputTitle>
+      <SecureBox>
+        <Input
+          width={"w_25"}
+          type="password"
+          value={cvc}
+          onChange={handleChange}
+          maxLength={MAX_CVC_LENGTH}
+          required
+        />
+        <HelpIcon
+          onClick={() => setHelpState(true)}
+          onMouseLeave={() => setHelpState(false)}
+        >
+          ?
+        </HelpIcon>
+        {helpState && (
+          <ToolTip>
+            세자리 <br/>
+            숫자 입력
+          </ToolTip>
+        )}
+      </SecureBox>
+    </InputContainer>
   );
 };
 
